@@ -1,4 +1,4 @@
-package com.comunidadedevspace.taskbeats
+package com.comunidadedevspace.taskbeats.presentation
 
 
 import android.app.Activity
@@ -13,6 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
 import androidx.activity.result.ActivityResult
 import androidx.room.Room
+import com.comunidadedevspace.taskbeats.R
+import com.comunidadedevspace.taskbeats.data.AppDataBase
+import com.comunidadedevspace.taskbeats.data.Task
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     // by lazy: Esse código só será executado quando for preciso utilizar o dataBase
     private val dataBase by lazy {
-        Room.databaseBuilder(applicationContext,AppDataBase::class.java,"taskbeats-database").build()
+        Room.databaseBuilder(applicationContext, AppDataBase::class.java,"taskbeats-database").build()
     }
 
     private val dao by lazy {
@@ -136,7 +139,7 @@ class MainActivity : AppCompatActivity() {
     }
     // task: Task? = null é um default argument
     private fun openTaskListDetail(task: Task?) {
-        val intent = TaskDetailActivity.start(this,task)
+        val intent = TaskDetailActivity.start(this, task)
         startForResult.launch(intent)
     }
 
@@ -164,6 +167,6 @@ enum class ActionType {
     CREATE
 
 }
-data class TaskAction(val task: Task,val actionType: String) : Serializable
+data class TaskAction(val task: Task, val actionType: String) : Serializable
 
 const val TASK_ACTION_RESULT = "TASK_ACTION_RESULT"

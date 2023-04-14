@@ -1,4 +1,4 @@
-package com.comunidadedevspace.taskbeats
+package com.comunidadedevspace.taskbeats.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.comunidadedevspace.taskbeats.R
+import com.comunidadedevspace.taskbeats.data.Task
 
 //essa classe tem objetivo de ter a funcionalidade do Adapter - transformar uma lista de tarefas na UI para usar na recyclerView
 
 class TaskListAdapter(
     private val openTaskDetailView : (task : Task) -> Unit
-    ) : ListAdapter<Task,TaskListViewHolder>(TaskListAdapter) {
+    ) : ListAdapter<Task, TaskListViewHolder>(TaskListAdapter) {
     // O que é um viewHolder: ele pega o item do xml item_task, vai segurar essa view, pra quando tiver fazendo
     // o Bind dessa view, for possivel setar no textView
 
