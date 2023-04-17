@@ -1,5 +1,6 @@
 package com.comunidadedevspace.taskbeats.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,7 +17,7 @@ interface TaskDao {
      //Selecionar da tabela Task
     //"Selecione da Tabela Task todos"
     @Query ("Select * from Task")
-    fun getAll(): List<Task>
+    fun getAll(): LiveData<List<Task>>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(task: Task)
