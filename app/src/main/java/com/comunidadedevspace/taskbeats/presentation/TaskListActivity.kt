@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import java.io.Serializable
 
-class MainActivity : AppCompatActivity() {
+class TaskListActivity : AppCompatActivity() {
 
 
     private lateinit var ctnContent: LinearLayout
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         //Live Data (atrelando ao Observer)
         //Toda vez que tiver uma mudança na base de dados não precisará chamar o listFromDataBse novamente
-        viewModel.taskListLiveData.observe(this@MainActivity,listObserver)
+        viewModel.taskListLiveData.observe(this@TaskListActivity,listObserver)
 
     }
 

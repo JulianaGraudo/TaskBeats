@@ -7,12 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.comunidadedevspace.taskbeats.TaskBeatsApplication
 import com.comunidadedevspace.taskbeats.data.Task
 import com.comunidadedevspace.taskbeats.data.TaskDao
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // Função de fazer as operações relacionadas a UI, para não deixar nada na UI que não seja mostrar dados para o usuário
-class TaskListViewModel(private val taskDao: TaskDao) : ViewModel() {
+class TaskListViewModel(private val taskDao: TaskDao, private val dispatcher: CoroutineDispatcher = Dispatchers.IO) : ViewModel() {
 
     //Live Data no View Model
     val taskListLiveData : LiveData<List<Task>> = taskDao.getAll()
@@ -29,28 +30,28 @@ class TaskListViewModel(private val taskDao: TaskDao) : ViewModel() {
         }
     }
     private fun deleteById(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             taskDao.deleteById(id)
         }
     }
 
     private fun insertIntoDataBase(task: Task) {
         //Significa que é feito em paralelo
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             taskDao.insert(task)
         }
 
     }
 
     private fun updateIntoDataBase(task: Task) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             taskDao.update(task)
         }
 
     }
 
     private fun deleteAll() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             taskDao.deleteAll()
         }
     }
